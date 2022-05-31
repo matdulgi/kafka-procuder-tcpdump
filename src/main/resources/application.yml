@@ -1,0 +1,23 @@
+app:
+  kafka:
+    producer:
+      topic: tcpdump-pi
+  tcpdump:
+    nic: en0
+
+
+# SPRING KAFKA PROPERTIES
+spring:
+  kafka:
+    bootstrap-servers: www.dulgi.com:9092,www.dulgi.com:9093,www.dulgi.com:9094
+    producer:
+      group-id: tcpdump-java
+      retries: 0
+      acks: all
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+  #  consumer:
+  #    group-id:
+  #    auto-offset-reset: earliest
+  #    key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+  #    value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
