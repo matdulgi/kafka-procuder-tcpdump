@@ -59,13 +59,16 @@ public class TcpdumpProducerService implements ApplicationRunner {
             try ( BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, "UTF-8")) ) {
                 while (true) {
                     String msg = reader.readLine();
-                    if (!msg.equals("")){
-                        this.template.send(new ProducerRecord(this.topic, "tcpdump", msg));
-                    }
+                    if (msg.equals("")){
+                        Thread.sleep(1000);
+                    } else
+                    this.template.send(new ProducerRecord(this.topic, "tcpdump", msg));
                 }
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
             } catch (IOException e) {
+                e.printStackTrace();
+            } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
